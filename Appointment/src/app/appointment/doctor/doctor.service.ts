@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { WorkingHour } from './working-hours/working-hours.component';
+import { WorkingHour } from "./working-hours/working-hours.component";
 
 @Injectable({providedIn: "root"})
 export class DoctorService {

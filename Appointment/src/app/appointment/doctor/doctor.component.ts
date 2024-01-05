@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { WorkingHour } from './working-hours/working-hours.component';
-import { DoctorService } from './doctor.service';
+import { Component, OnInit } from "@angular/core";
+import { WorkingHour } from "./working-hours/working-hours.component";
+import { DoctorService } from "./doctor.service";
 
 export class Doctor {
   id: number
