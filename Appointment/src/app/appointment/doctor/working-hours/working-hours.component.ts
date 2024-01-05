@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+export class WorkingHour {
+  day: string;
+  hourFrom: number;
+  hourTo: number;
+}
 
 @Component({
   selector: 'app-working-hours',
@@ -6,5 +12,8 @@ import { Component } from '@angular/core';
   styleUrl: './working-hours.component.css'
 })
 export class WorkingHoursComponent {
+
+  @Input()
+  workingHours: WorkingHour[];
 
 }

@@ -1,0 +1,11 @@
+<div>
+    <span class="label-medium">Doctor</span>
+    <select name="doctor" [(ngModel)]="selectedDoctor" (change)="loadWorkingHours()">
+        <option *ngFor="let doctor of doctors" value="{{doctor.id}}">
+            {{doctor.name}}
+        </option>
+    </select>
+</div>
+<div>
+    <app-working-hours *ngIf="selectedDoctor != 0" [workingHours]="workingHours"></app-working-hours>
+</div>

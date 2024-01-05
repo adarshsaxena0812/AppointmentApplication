@@ -1,0 +1,10 @@
+<div *ngIf="workingHours?.length > 0">
+    <h3>Working Hours</h3>
+    <table>
+        <tr *ngFor="let workingHour of workingHours">
+            <td>{{workingHour.day}}</td>
+            <td>{{workingHour.hourFrom}} To {{workingHour.hourTo}}</td>
+        </tr>
+    </table>
+</div>
+    

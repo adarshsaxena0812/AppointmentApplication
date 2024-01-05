@@ -1,5 +1,4 @@
 .header {
-    height: 280px;
     padding: 30px 40px;
     display: flex;
     background-color: white;
@@ -10,8 +9,4 @@
 }
 h2 {
     font-size: 45px;
-}
-.label-medium {
-    padding: 0px 0px;
-    font-size: medium;
 }

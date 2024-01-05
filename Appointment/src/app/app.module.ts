@@ -1,21 +1,23 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppointmentComponent } from './appointment/appointment.component';
-import { ProviderComponent } from './appointment/provider/provider.component';
-import { WorkingHoursComponent } from './appointment/provider/working-hours/working-hours.component';
+import { DoctorComponent } from './appointment/doctor/doctor.component';
+import { WorkingHoursComponent } from './appointment/doctor/working-hours/working-hours.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppointmentComponent,
-    ProviderComponent,
+    DoctorComponent,
     WorkingHoursComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [
