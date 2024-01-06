@@ -9,9 +9,14 @@ import { Doctor } from './doctor/doctor.component';
 export class AppointmentComponent {
 
   selectedDoctor: Doctor;
+  displayAppointmentsForDoctor = false;
 
   onDoctorSelection(data: Doctor) {
     this.selectedDoctor = data;
     console.log(data);
+  }
+
+  displayAppointments() {
+    this.displayAppointmentsForDoctor = true;
   }
 }

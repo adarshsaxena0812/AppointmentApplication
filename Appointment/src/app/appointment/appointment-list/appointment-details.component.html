@@ -1,0 +1,27 @@
+<div>
+    <div class="search-header">
+        <div class="search-item">
+            From date:
+            <input type="date" name="fromDate" [(ngModel)]="fromDate" />
+        </div>
+        <div class="search-item">
+            To date:
+            <input type="date" name="toDate" [(ngModel)]="toDate" />    
+        </div>
+        <div class="search-item">
+            <button (click)="getAppointment()">Get Appointment</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="(filteredAppointments.length > 0)">
+    <table>
+        <tr>
+            <th>Start Time</th>
+            <th>Duration (mins)</th>
+        </tr>
+        <tr *ngFor="let appointment of filteredAppointments"    >
+            <td>{{appointment.appointmentStartTime | date}}</td>
+            <td>{{appointment.appointmentStartTime | displayDuration: appointment.appointmentEndTime}}</td>
+        </tr>
+    </table>
+</div>

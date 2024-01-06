@@ -8,7 +8,7 @@
         </div>
         <div class="booking-data">
             <label>Date of Appointment</label>
-            <input type="datetime-local" name="appointmentDateTime" [(ngModel)]="appointmentStartTime"/>
+            <input type="datetime-local" name="appointmentDateTime" [(ngModel)]="appointmentStartTime" />
         </div>
         <div class="booking-data">
             <label>Duration</label>
@@ -28,5 +28,13 @@
     <div *ngIf="hasConflictingAppointment" class="alert">
         <span class="closebtn" (click)="closeAlertMessage()">&times;</span>
         There is conflicting appointment. Please book appointment at some other time.
+    </div>
+    <div *ngIf="hasWrongWorkingHours" class="alert">
+        <span class="closebtn" (click)="closeAlertMessage()">&times;</span>
+        Office is closed during the specified time. Please book appointment at some other time.
+    </div>
+    <div class="alert success" *ngIf="appointmentCreated">
+        <span class="closebtn" (click)="closeAlertMessage()">&times;</span>
+        <strong>Success!!</strong> Appointment created successfully
     </div>
 </div>

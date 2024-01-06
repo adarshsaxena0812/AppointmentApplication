@@ -1,9 +1,9 @@
 <div *ngIf="workingHours?.length > 0">
     <h3>Working Hours</h3>
-    <table>
+    <table class="working-hour-display">
         <tr *ngFor="let workingHour of workingHours">
-            <td>{{workingHour.day}}</td>
-            <td>{{workingHour.hourFrom}} To {{workingHour.hourTo}}</td>
+            <td>{{workingHour.day | dayDisplay }}</td>
+            <td>{{workingHour.hourFrom | workingHourDisplay: workingHour.hourTo }}</td>
         </tr>
     </table>
 </div>

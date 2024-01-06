@@ -7,19 +7,23 @@ export class DoctorService {
     getWorkingHours(doctorId: number): WorkingHour[] {
         if(doctorId == 1) {
             return [
-                { day: "Monday", hourFrom: 9, hourTo: 5 } as WorkingHour,
-                { day: "Tuesday", hourFrom: 9, hourTo: 5 } as WorkingHour,
-                { day: "Wednesday", hourFrom: 9, hourTo: 5 } as WorkingHour,
-                { day: "Thursday", hourFrom: 9, hourTo: 5 } as WorkingHour,
-                { day: "Friday", hourFrom: 9, hourTo: 5 } as WorkingHour
+                { day: 0, hourFrom:0, hourTo: 0 } as WorkingHour,
+                { day: 1, hourFrom:9, hourTo: 17 } as WorkingHour,
+                { day: 2, hourFrom: 9, hourTo: 17 } as WorkingHour,
+                { day: 3, hourFrom: 9, hourTo: 17 } as WorkingHour,
+                { day: 4, hourFrom: 9, hourTo: 17 } as WorkingHour,
+                { day: 5, hourFrom: 9, hourTo: 17 } as WorkingHour,
+                { day: 6, hourFrom: 1, hourTo: 5 } as WorkingHour
               ];
         } else if(doctorId == 2) {
             return [
-                { day: "Monday", hourFrom: 8, hourTo: 4 } as WorkingHour,
-                { day: "Tuesday", hourFrom: 8, hourTo: 4 } as WorkingHour,
-                { day: "Wednesday", hourFrom: 8, hourTo: 4 } as WorkingHour,
-                { day: "Thursday", hourFrom: 8, hourTo: 4 } as WorkingHour,
-                { day: "Friday", hourFrom: 8, hourTo: 4 } as WorkingHour
+                { day: 0, hourFrom:0, hourTo: 0 } as WorkingHour,
+                { day: 1, hourFrom: 8, hourTo: 16 } as WorkingHour,
+                { day: 2, hourFrom: 8, hourTo: 16 } as WorkingHour,
+                { day: 3, hourFrom: 8, hourTo: 16 } as WorkingHour,
+                { day: 4, hourFrom: 8, hourTo: 16 } as WorkingHour,
+                { day: 5, hourFrom: 8, hourTo: 16 } as WorkingHour,
+                { day: 6, hourFrom: 1, hourTo: 5 } as WorkingHour
               ];
         }
 

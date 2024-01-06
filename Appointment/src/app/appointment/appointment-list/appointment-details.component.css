@@ -1,0 +1,19 @@
+.search-header {
+    display: flex;
+}
+.search-item {
+    padding: 10px 10px;
+}
+table {
+    width: 350px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 1px solid;
+}
+th {
+    background-color: rgba(42, 85, 46, 0.371);
+    padding: 10px 10px;
+}
+tr td {
+    border: solid 1px;
+}

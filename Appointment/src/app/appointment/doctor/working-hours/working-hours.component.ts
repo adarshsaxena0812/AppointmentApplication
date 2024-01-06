@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 export class WorkingHour {
-  day: string;
+  day: number;
   hourFrom: number;
   hourTo: number;
 }

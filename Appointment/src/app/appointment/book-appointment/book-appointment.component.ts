@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Doctor } from '../doctor/doctor.component';
 import { Appointment, BookAppointmentService } from './book-appointmnet.service';
+import { DoctorService } from '../doctor/doctor.service';
+import { WorkingHour } from '../doctor/working-hours/working-hours.component';
+import { WorkingHoursUtil } from '../util/workingHourUtil.service';
 
 @Component({
   selector: 'app-book-appointment',
@@ -15,16 +18,32 @@ export class BookAppointmentComponent {
   appointmentStartTime: string;
   appointmnetDuration: string = '10';
   appointments: Appointment[];
-  hasConflictingAppointment: boolean = false;
+  hasConflictingAppointment = false;
+  hasWrongWorkingHours = false
+  appointmentCreated = false;
 
-  constructor(private bookAppointmentService: BookAppointmentService) {}
+  constructor(
+    private bookAppointmentService: BookAppointmentService,
+    private doctorService: DoctorService,
+    private workingHoursUtil: WorkingHoursUtil
+  ) {}
 
   bookAppointmnet() {
     const startTime = (new Date(this.appointmentStartTime)).getTime();
-    this.bookAppointmentService.fetchAppointment().subscribe(data => {
-      this.appointments = data;
-      this.checkConflictingAppointment(startTime);
-    });
+    const hasCorrectWorkingHours = this.checkAppointmentWorkingHours()
+    if (hasCorrectWorkingHours) {
+      this.bookAppointmentService.fetchAppointment().subscribe(data => {
+        this.appointments = data;
+        this.checkConflictingAppointment(startTime);
+      });
+    } else {
+      this.hasWrongWorkingHours = true;
+    }
+  }
+
+  checkAppointmentWorkingHours(): boolean {
+    const workingHours: WorkingHour[] = this.doctorService.getWorkingHours(this.selectedDoctor.id);
+    return this.workingHoursUtil.validateWorkingHours(workingHours, this.appointmentStartTime);
   }
 
   checkConflictingAppointment(appointmentStartTime: number) {
@@ -32,18 +51,21 @@ export class BookAppointmentComponent {
     if(!this.hasConflictingAppointment) {
       const startTime = (new Date(this.appointmentStartTime)).getTime();
       this.bookAppointmentService.saveAppointment(this.selectedDoctor.id, startTime, Number(this.appointmnetDuration)).subscribe(() => {
-        this.resetValues();
+        this.resetValue();
+        this.appointmentCreated = true;
       });
     }
   }
 
-  resetValues() {
+  resetValue() {
     this.appointmentStartTime = '';
 
   }
 
   closeAlertMessage() {
     this.hasConflictingAppointment = false;
-    this.resetValues();
+    this.hasWrongWorkingHours = false;
+    this.appointmentCreated = false;
+    this.resetValue();
   }
 }

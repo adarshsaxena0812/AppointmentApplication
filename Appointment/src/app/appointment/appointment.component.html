@@ -7,3 +7,10 @@
     <app-doctor class="doctor-component-display" (selectedDoctor)="onDoctorSelection($event)"></app-doctor>
     <app-book-appointment class="booking-component-display" [selectedDoctor]="selectedDoctor"></app-book-appointment>
 </div>
+<div>
+    <button (click)="displayAppointments()">Display Appointment</button>
+</div>
+<div>
+    <app-appointment-details *ngIf="displayAppointmentsForDoctor" [selectedDoctor]="selectedDoctor"></app-appointment-details>
+</div>
+

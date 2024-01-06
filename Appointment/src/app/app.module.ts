@@ -9,6 +9,10 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { DoctorComponent } from './appointment/doctor/doctor.component';
 import { WorkingHoursComponent } from './appointment/doctor/working-hours/working-hours.component';
 import { BookAppointmentComponent } from './appointment/book-appointment/book-appointment.component';
+import { DayDisplayPipe } from './appointment/util/dayDisplayPipe.pipe';
+import { WorkingHoursPipe } from './appointment/util/workingHoursDisplayPipe.pipe';
+import { AppointmentDetailsComponent } from './appointment/appointment-list/appointment-details.component';
+import { DurationCalculationPipe } from './appointment/util/durationPipe.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,10 @@ import { BookAppointmentComponent } from './appointment/book-appointment/book-ap
     DoctorComponent,
     WorkingHoursComponent,
     BookAppointmentComponent,
+    DayDisplayPipe,
+    WorkingHoursPipe,
+    DurationCalculationPipe,
+    AppointmentDetailsComponent
   ],
   imports: [
     BrowserModule,
