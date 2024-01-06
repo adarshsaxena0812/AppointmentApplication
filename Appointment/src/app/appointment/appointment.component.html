@@ -3,6 +3,7 @@
         <h2> Appointment Application </h2>
     </div>
 </div>
-<div>
-    <app-doctor></app-doctor>
+<div class="appointment-component-display">
+    <app-doctor class="doctor-component-display" (selectedDoctor)="onDoctorSelection($event)"></app-doctor>
+    <app-book-appointment class="booking-component-display" [selectedDoctor]="selectedDoctor"></app-book-appointment>
 </div>

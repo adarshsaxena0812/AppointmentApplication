@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { WorkingHour } from "./working-hours/working-hours.component";
 import { DoctorService } from "./doctor.service";
 
@@ -20,11 +20,22 @@ export class DoctorComponent {
     {id: 2, name: "Who"}
   ];
   workingHours: WorkingHour[];
-  selectedDoctor: number;
+  selectedDoctorId: number;
+  
+  @Output()
+  selectedDoctor: EventEmitter<Doctor> = new EventEmitter<Doctor>();
 
   constructor(private doctorService: DoctorService) {}
 
   loadWorkingHours() {
-    this.workingHours = this.doctorService.getWorkingHours(this.selectedDoctor);
+    this.workingHours = this.doctorService.getWorkingHours(this.selectedDoctorId);
+    this.emitDoctorEvent();
+  }
+
+  emitDoctorEvent() {
+    let selectedDoctor = this.doctors.find((doctor) => {
+      return doctor.id == this.selectedDoctorId;
+    });
+    this.selectedDoctor.emit(selectedDoctor);  
   }
 }

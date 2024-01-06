@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="booking-header">
+        <h2>Book an Appointment</h2>
+    </div>
+    <div *ngIf="selectedDoctor?.id > 0" class="booking-data">
+        <div class="booking-data">
+            <label>You are booking your appointment with Dr. {{selectedDoctor?.name}}</label>
+        </div>
+        <div class="booking-data">
+            <label>Date of Appointment</label>
+            <input type="datetime-local" name="appointmentDateTime" [(ngModel)]="appointmentStartTime"/>
+        </div>
+        <div class="booking-data">
+            <label>Duration</label>
+            <select [(ngModel)]="appointmnetDuration">
+                <option value="10">10 mins</option>
+                <option value="20">20 mins</option>
+                <option value="30">30 mins</option>
+                <option value="40">40 mins</option>
+                <option value="50">50 mins</option>
+                <option value="60">60 mins</option>
+            </select>
+        </div>
+        <div class="booking-data">
+            <button (click)="bookAppointmnet()">Book Appointmnet</button>
+        </div>
+    </div>
+    <div *ngIf="hasConflictingAppointment" class="alert">
+        <span class="closebtn" (click)="closeAlertMessage()">&times;</span>
+        There is conflicting appointment. Please book appointment at some other time.
+    </div>
+</div>

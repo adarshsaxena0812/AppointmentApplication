@@ -10,3 +10,16 @@
 h2 {
     font-size: 45px;
 }
+.appointment-component-display {
+    display: flex;
+}
+.doctor-component-display {
+    padding: 10px 10px;
+    margin: 20px 20px;
+}
+.booking-component-display {
+    display: flex;
+    width: 500px
+    padding: 10px 10px;
+    margin: 20px 20px;
+}
