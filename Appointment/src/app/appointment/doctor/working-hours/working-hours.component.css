@@ -1,8 +1,6 @@
 table {
     width: 350px;
-    table-layout: fixed;
     border-collapse: collapse;
-    border: 1px solid;
 }
 tr, td {
     padding: 5px;

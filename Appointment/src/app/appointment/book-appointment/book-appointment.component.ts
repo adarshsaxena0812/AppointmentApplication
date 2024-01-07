@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Doctor } from '../doctor/doctor.component';
 import { Appointment, BookAppointmentService } from './book-appointmnet.service';
 import { DoctorService } from '../doctor/doctor.service';
@@ -10,7 +10,7 @@ import { WorkingHoursUtil } from '../util/workingHourUtil.service';
   templateUrl: './book-appointment.component.html',
   styleUrl: './book-appointment.component.css'
 })
-export class BookAppointmentComponent {
+export class BookAppointmentComponent implements OnInit {
 
   @Input()
   selectedDoctor: Doctor;
@@ -27,6 +27,9 @@ export class BookAppointmentComponent {
     private doctorService: DoctorService,
     private workingHoursUtil: WorkingHoursUtil
   ) {}
+
+  ngOnInit() {
+  }
 
   bookAppointmnet() {
     const startTime = (new Date(this.appointmentStartTime)).getTime();

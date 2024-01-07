@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+.btn {
+    border: 1px solid;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 2em;
+    min-width: 200  px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    margin: 0px 5px;
+    padding: 2px 10px;
+    background-color: #0071ff;
+    box-shadow: 0px 3px 6px rgba(0,113,255,.3);
+}

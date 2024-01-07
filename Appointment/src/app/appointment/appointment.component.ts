@@ -13,7 +13,6 @@ export class AppointmentComponent {
 
   onDoctorSelection(data: Doctor) {
     this.selectedDoctor = data;
-    console.log(data);
   }
 
   displayAppointments() {
