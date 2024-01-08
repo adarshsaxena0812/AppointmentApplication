@@ -1,19 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
-
-export class BookingDetails {
-    doctorId: number;
-    appointmentStartTime: number;
-    appointmentEndTime: number;
-}
-
-export class Appointment {
-    id?: String;
-    doctorId: number;
-    appointmentStartTime: number;
-    appointmentEndTime: number;
-}
+import { BookingDetails } from "../models/bookingDetails";
+import { Appointment } from "../models/appointment";
 
 @Injectable({providedIn: "root"})
 export class BookAppointmentService {

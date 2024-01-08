@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Appointment } from "../book-appointment/book-appointmnet.service";
+import { Appointment } from "../models/appointment";
 
 @Injectable({providedIn: "root"})
 export class AppointmentService {

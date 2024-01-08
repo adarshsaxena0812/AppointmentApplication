@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Appointment } from "../book-appointment/book-appointmnet.service";
 import { WorkingHoursUtil } from "../util/workingHourUtil";
-import { __assign } from "tslib";
-import { WorkingHour } from "../doctor/working-hours/working-hours.component";
+import { Appointment } from "../models/appointment";
 
 @Injectable({providedIn: "root"})
 export class AvailableAppointmentService {

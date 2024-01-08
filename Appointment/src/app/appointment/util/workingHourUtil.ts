@@ -1,4 +1,4 @@
-import { WorkingHour } from "../doctor/working-hours/working-hours.component";
+import { WorkingHour } from "../models/workingHour";
 
 export class WorkingHoursUtil {
 

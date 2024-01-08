@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-import { WorkingHour } from "./working-hours/working-hours.component";
 import { DoctorService } from "./doctor.service";
-
-export class Doctor {
-  id: number
-  name: String;
-}
+import { WorkingHour } from "../models/workingHour";
+import { Doctor } from "../models/doctor";
 
 @Component({
   selector: 'app-doctor',

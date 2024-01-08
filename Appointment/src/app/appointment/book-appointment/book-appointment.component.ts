@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Doctor } from '../doctor/doctor.component';
-import { Appointment, BookAppointmentService } from './book-appointmnet.service';
+import { BookAppointmentService } from './book-appointmnet.service';
 import { DoctorService } from '../doctor/doctor.service';
-import { WorkingHour } from '../doctor/working-hours/working-hours.component';
 import { WorkingHoursUtil } from '../util/workingHourUtil';
+import { WorkingHour } from '../models/workingHour';
+import { Doctor } from '../models/doctor';
+import { Appointment } from '../models/appointment';
 
 @Component({
   selector: 'app-book-appointment',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Doctor } from './doctor/doctor.component';
+import { Doctor } from './models/doctor';
 
 @Component({
   selector: 'app-appointment',

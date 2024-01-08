@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-export class WorkingHour {
-  day: number;
-  hourFrom: number;
-  hourTo: number;
-}
+import { WorkingHour } from '../../models/workingHour';
 
 @Component({
   selector: 'app-working-hours',

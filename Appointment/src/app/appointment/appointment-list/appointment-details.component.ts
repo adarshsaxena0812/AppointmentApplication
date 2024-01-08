@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Doctor } from '../doctor/doctor.component';
-import { Appointment, BookAppointmentService } from '../book-appointment/book-appointmnet.service';
+import { BookAppointmentService } from '../book-appointment/book-appointmnet.service';
 import { AppointmentService } from './appointment.service';
+import { Doctor } from '../models/doctor';
+import { Appointment } from '../models/appointment';
 
 @Component({
   selector: 'app-appointment-details',
