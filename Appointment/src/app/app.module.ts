@@ -13,6 +13,7 @@ import { DayDisplayPipe } from './appointment/util/dayDisplayPipe.pipe';
 import { WorkingHoursPipe } from './appointment/util/workingHoursDisplayPipe.pipe';
 import { AppointmentDetailsComponent } from './appointment/appointment-list/appointment-details.component';
 import { DurationCalculationPipe } from './appointment/util/durationPipe.pipe';
+import { AvailableAppointmentComponent } from './appointment/available-appointment/available-appointment.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DurationCalculationPipe } from './appointment/util/durationPipe.pipe';
     DayDisplayPipe,
     WorkingHoursPipe,
     DurationCalculationPipe,
-    AppointmentDetailsComponent
+    AppointmentDetailsComponent,
+    AvailableAppointmentComponent
   ],
   imports: [
     BrowserModule,

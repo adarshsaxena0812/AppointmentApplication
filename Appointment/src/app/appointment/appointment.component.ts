@@ -10,6 +10,7 @@ export class AppointmentComponent {
 
   selectedDoctor: Doctor;
   displayAppointmentsForDoctor = false;
+  displayFirstAvailableAppointment = false;
 
   onDoctorSelection(data: Doctor) {
     this.selectedDoctor = data;
@@ -17,5 +18,11 @@ export class AppointmentComponent {
 
   displayAppointments() {
     this.displayAppointmentsForDoctor = true;
+    this.displayFirstAvailableAppointment = false;
+  }
+
+  displayAvailableAppointments() {
+    this.displayAppointmentsForDoctor = false;
+    this.displayFirstAvailableAppointment = true;
   }
 }

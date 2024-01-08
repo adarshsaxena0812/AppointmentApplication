@@ -3,7 +3,7 @@ import { Doctor } from '../doctor/doctor.component';
 import { Appointment, BookAppointmentService } from './book-appointmnet.service';
 import { DoctorService } from '../doctor/doctor.service';
 import { WorkingHour } from '../doctor/working-hours/working-hours.component';
-import { WorkingHoursUtil } from '../util/workingHourUtil.service';
+import { WorkingHoursUtil } from '../util/workingHourUtil';
 
 @Component({
   selector: 'app-book-appointment',
@@ -16,7 +16,7 @@ export class BookAppointmentComponent implements OnInit {
   selectedDoctor: Doctor;
   
   appointmentStartTime: string;
-  appointmnetDuration: string = '10';
+  appointmentDuration: string = '10';
   appointments: Appointment[];
   hasConflictingAppointment = false;
   hasWrongWorkingHours = false
@@ -24,8 +24,7 @@ export class BookAppointmentComponent implements OnInit {
 
   constructor(
     private bookAppointmentService: BookAppointmentService,
-    private doctorService: DoctorService,
-    private workingHoursUtil: WorkingHoursUtil
+    private doctorService: DoctorService
   ) {}
 
   ngOnInit() {
@@ -46,14 +45,14 @@ export class BookAppointmentComponent implements OnInit {
 
   checkAppointmentWorkingHours(): boolean {
     const workingHours: WorkingHour[] = this.doctorService.getWorkingHours(this.selectedDoctor.id);
-    return this.workingHoursUtil.validateWorkingHours(workingHours, this.appointmentStartTime);
+    return WorkingHoursUtil.validateWorkingHours(workingHours, this.appointmentStartTime);
   }
 
   checkConflictingAppointment(appointmentStartTime: number) {
     this.hasConflictingAppointment = this.bookAppointmentService.checkConflictingAppointment(this.selectedDoctor.id, appointmentStartTime, this.appointments);
     if(!this.hasConflictingAppointment) {
       const startTime = (new Date(this.appointmentStartTime)).getTime();
-      this.bookAppointmentService.saveAppointment(this.selectedDoctor.id, startTime, Number(this.appointmnetDuration)).subscribe(() => {
+      this.bookAppointmentService.saveAppointment(this.selectedDoctor.id, startTime, Number(this.appointmentDuration)).subscribe(() => {
         this.resetValue();
         this.appointmentCreated = true;
       });

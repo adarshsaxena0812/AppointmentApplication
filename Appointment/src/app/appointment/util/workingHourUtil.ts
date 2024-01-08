@@ -1,10 +1,8 @@
-import { Injectable } from "@angular/core";
 import { WorkingHour } from "../doctor/working-hours/working-hours.component";
 
-@Injectable({providedIn: "root"})
 export class WorkingHoursUtil {
 
-    validateWorkingHours(workingHours: WorkingHour[], startTimeStr: string) {
+    static validateWorkingHours(workingHours: WorkingHour[], startTimeStr: string) {
         const appointmentDate = new Date(startTimeStr);
         const appointmentDay = appointmentDate.getDay();
         const workingHour = workingHours.find((workingHour) => {
@@ -28,4 +26,8 @@ export class WorkingHoursUtil {
         return false;
     }
 
+    static getEndDate(startDate: string, noOdDaysToAdd: number) {
+      const startDt = new Date(startDate);
+      return startDt.setDate(startDt.getDate() + noOdDaysToAdd);
+    }
 }

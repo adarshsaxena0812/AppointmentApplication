@@ -1,0 +1,28 @@
+<div>
+    <div class="search-header">
+        <div class="search-item">
+            Available date:
+            <input type="datetime-local" name="availableDate" [(ngModel)]="desiredAppointmentDateTime" />
+        </div>
+        <div class="search-item">
+            Duration:
+            <select [(ngModel)]="appointmentDuration">
+                <option value="10">10 mins</option>
+                <option value="20">20 mins</option>
+                <option value="30">30 mins</option>
+                <option value="40">40 mins</option>
+                <option value="50">50 mins</option>
+                <option value="60">60 mins</option>
+            </select>
+        </div>
+        <div class="search-item">
+            <button (click)="getFirstAvailableAppointment()" class="btn">Get Appointment</button>
+        </div>
+    </div>
+</div>
+<div>
+    <small>{{errorMessage}}</small>
+</div>
+<div *ngIf="(firstAvailableAppointment)" class="available-time">
+    <h2>First appointment is available at {{firstAvailableAppointment}}</h2>
+</div>

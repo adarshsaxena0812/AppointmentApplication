@@ -11,9 +11,11 @@
     <span layout="row"><hr flex/></span>
     <div>
         <button (click)="displayAppointments()" class="btn">Display Appointment</button>
+        <button (click)="displayAvailableAppointments()" class="btn">First Available Appointment</button>
     </div>
     <div>
         <app-appointment-details *ngIf="displayAppointmentsForDoctor" [selectedDoctor]="selectedDoctor"></app-appointment-details>
+        <app-available-appointment *ngIf="displayFirstAvailableAppointment" [selectedDoctor]="selectedDoctor"></app-available-appointment>
     </div>
 </div>
 
