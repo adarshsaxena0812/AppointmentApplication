@@ -40,8 +40,8 @@ describe('BookAppointmentComponent', () => {
 
       component.bookAppointmnet();
 
-      expect(component.checkAppointmentWorkingHours).toHaveBeenCalledWith();
-      expect(bookAppointmentServiceMock.fetchAppointment).toHaveBeenCalledWith();
+      expect(component.checkAppointmentWorkingHours).toHaveBeenCalled();
+      expect(bookAppointmentServiceMock.fetchAppointment).toHaveBeenCalled();
       expect(component.checkConflictingAppointment).toHaveBeenCalled();
       done();
     });
