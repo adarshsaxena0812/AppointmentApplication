@@ -30,9 +30,9 @@ import { AvailableAppointmentComponent } from './appointment/available-appointme
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
-    AppRoutingModule,
-    HttpClientModule
+    AppRoutingModule
   ],
   providers: [
     provideClientHydration()

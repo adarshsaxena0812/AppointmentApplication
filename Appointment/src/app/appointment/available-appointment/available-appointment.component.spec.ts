@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from "@angular/common/http/testing"
 
 import { AvailableAppointmentComponent } from './available-appointment.component';
 
@@ -8,13 +9,13 @@ describe('AvailableAppointmentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AvailableAppointmentComponent]
+      declarations: [AvailableAppointmentComponent],
+      imports: [HttpClientTestingModule],
     })
     .compileComponents();
     
     fixture = TestBed.createComponent(AvailableAppointmentComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

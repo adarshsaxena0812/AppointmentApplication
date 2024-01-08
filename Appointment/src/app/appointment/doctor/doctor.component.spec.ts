@@ -1,23 +1,42 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DoctorComponent } from './doctor.component';
+import { DoctorService } from './doctor.service';
 
-describe('ProviderComponent', () => {
+describe('DoctorComponent', () => {
   let component: DoctorComponent;
   let fixture: ComponentFixture<DoctorComponent>;
+  let doctorServiceMock;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DoctorComponent]
+      declarations: [DoctorComponent],
+      providers: [{ 
+        provide: DoctorService, 
+        useValue: jasmine.createSpyObj('DoctorService', ['getWorkingHours'])
+      }]
     })
     .compileComponents();
+
+    doctorServiceMock = TestBed.get(DoctorService);
     
     fixture = TestBed.createComponent(DoctorComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('loadWorkingHours', () => {
+    it('should get working hours for doctor and emit selected doctor', () => {
+      component.selectedDoctorId = 1
+      spyOn(component, 'emitDoctorEvent');
+
+      component.loadWorkingHours();
+
+      expect(component.emitDoctorEvent).toHaveBeenCalled();
+      expect(doctorServiceMock.getWorkingHours).toHaveBeenCalledWith(1);
+    });
   });
 });
