@@ -35,3 +35,12 @@ values
     (4, 8, 16, 2),
     (5, 8, 16, 2),
     (6, 0, 0, 2);
+
+CREATE TABLE appointment(
+    id int primary key AUTO_INCREMENT,
+    start_time bigint,
+    end_time bigint, 
+    doctor_id int,
+    INDEX IDX_APP_DOCTOR_ID (doctor_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctor(id)
+);

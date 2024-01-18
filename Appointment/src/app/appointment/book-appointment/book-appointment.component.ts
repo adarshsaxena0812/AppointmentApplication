@@ -22,6 +22,7 @@ export class BookAppointmentComponent implements OnInit {
   hasConflictingAppointment = false;
   hasWrongWorkingHours = false
   appointmentCreated = false;
+  hasCorrectWorkingHours = true;
 
   constructor(
     private bookAppointmentService: BookAppointmentService,
@@ -31,38 +32,29 @@ export class BookAppointmentComponent implements OnInit {
   ngOnInit() {
   }
 
-  bookAppointmnet() {
+  validateAppointmnet() {
     const startTime = (new Date(this.appointmentStartTime)).getTime();
-    const hasCorrectWorkingHours = this.checkAppointmentWorkingHours()
-    if (hasCorrectWorkingHours) {
-      this.bookAppointmentService.fetchAppointment().subscribe(data => {
-        this.appointments = data;
-        this.checkConflictingAppointment(startTime);
-      });
-    } else {
-      this.hasWrongWorkingHours = true;
-    }
+
+    this.doctorService.getWorkingHours(this.selectedDoctor.id).subscribe((result) => {
+      const workingHours: WorkingHour[] = result.data;
+      this.hasCorrectWorkingHours = WorkingHoursUtil.validateWorkingHours(workingHours, this.appointmentStartTime);
+      this.bookAppointment(startTime);
+    });
   }
 
-  checkAppointmentWorkingHours(): boolean {
-    const workingHours: WorkingHour[] = this.doctorService.getWorkingHours(this.selectedDoctor.id);
-    return WorkingHoursUtil.validateWorkingHours(workingHours, this.appointmentStartTime);
-  }
-
-  checkConflictingAppointment(appointmentStartTime: number) {
-    this.hasConflictingAppointment = this.bookAppointmentService.checkConflictingAppointment(this.selectedDoctor.id, appointmentStartTime, this.appointments);
-    if(!this.hasConflictingAppointment) {
-      const startTime = (new Date(this.appointmentStartTime)).getTime();
-      this.bookAppointmentService.saveAppointment(this.selectedDoctor.id, startTime, Number(this.appointmentDuration)).subscribe(() => {
-        this.resetValue();
+  bookAppointment(startTime: number) {
+    this.bookAppointmentService.saveAppointment(this.selectedDoctor.id, startTime, Number(this.appointmentDuration)).subscribe((result) => {
+      if (result.success == 1) {
         this.appointmentCreated = true;
-      });
-    }
+        this.resetValue();
+      } else {
+          this.hasConflictingAppointment = true;
+      }
+    });
   }
 
   resetValue() {
     this.appointmentStartTime = '';
-
   }
 
   closeAlertMessage() {
