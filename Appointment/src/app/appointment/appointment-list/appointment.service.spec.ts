@@ -20,7 +20,7 @@ describe('AppointmentService', () => {
             ]
             spyOn(service, 'sortAppointment').and.returnValue([appointments[0]]);
 
-            let result = service.filterAppointment(1, appointments, '2024-01-05', '2024-01-05');
+            let result = service.filterAppointment(appointments, '2024-01-05', '2024-01-05');
 
             expect(result.length).toEqual(1);
             expect(service.sortAppointment).toHaveBeenCalled();
@@ -30,17 +30,17 @@ describe('AppointmentService', () => {
     describe('sortAppointment', () => {
         it('should sort appointments by start date', () => {
             let appointments = [
-                { doctorId: 1, appointmentStartTime: 123456456000, appointmentEndTime: 123458456000 },
-                { doctorId: 1, appointmentStartTime: 123123123000, appointmentEndTime: 123125123000 },
-                { doctorId: 1, appointmentStartTime: 456456123000, appointmentEndTime: 456458123000 },
-                { doctorId: 1, appointmentStartTime: 456123456000, appointmentEndTime: 456125456000 }
+                { doctorId: 1, startTime: 123456456000, endTime: 123458456000 },
+                { doctorId: 1, startTime: 123123123000, endTime: 123125123000 },
+                { doctorId: 1, startTime: 456456123000, endTime: 456458123000 },
+                { doctorId: 1, startTime: 456123456000, endTime: 456125456000 }
             ]
 
             let result = service.sortAppointment(appointments);
 
             expect(result.length).toEqual(4);
-            expect(result[0].appointmentStartTime).toEqual(123123123000);
-            expect(result[2].appointmentStartTime).toEqual(456123456000);
+            expect(result[0].startTime).toEqual(123123123000);
+            expect(result[2].startTime).toEqual(456123456000);
         });
     });
 });

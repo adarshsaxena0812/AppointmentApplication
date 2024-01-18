@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DoctorComponent } from './doctor.component';
 import { DoctorService } from './doctor.service';
+import { of } from 'rxjs';
 
 describe('DoctorComponent', () => {
   let component: DoctorComponent;
@@ -32,6 +33,7 @@ describe('DoctorComponent', () => {
     it('should get working hours for doctor and emit selected doctor', () => {
       component.selectedDoctorId = 1
       spyOn(component, 'emitDoctorEvent');
+      doctorServiceMock.getWorkingHours.and.returnValue(of([]));
 
       component.loadWorkingHours();
 

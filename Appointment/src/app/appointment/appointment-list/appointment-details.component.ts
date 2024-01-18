@@ -25,7 +25,7 @@ export class AppointmentDetailsComponent {
 
   getAppointment() {
     this.bookAppointmentService.fetchAppointment(this.selectedDoctor.id).subscribe(result => {
-        this.filteredAppointments = this.appointmentService.filterAppointment(this.selectedDoctor.id, result.data, this.fromDate, this.toDate);
+        this.filteredAppointments = this.appointmentService.filterAppointment(result.data, this.fromDate, this.toDate);
     });
   }
 }

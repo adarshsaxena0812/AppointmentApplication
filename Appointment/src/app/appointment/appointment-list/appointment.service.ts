@@ -4,7 +4,7 @@ import { Appointment } from "../models/appointment";
 @Injectable({providedIn: "root"})
 export class AppointmentService {
 
-    filterAppointment(doctorId: number, appointments, fromDate: string, toDate: string) {
+    filterAppointment(appointments, fromDate: string, toDate: string) {
         const fromDateTime = new Date(new Date(fromDate).toUTCString()).setHours(0, 0, 0, 0);
         const toDateTime = new Date(new Date(toDate).toUTCString()).setHours(23, 59, 59, 0);
 

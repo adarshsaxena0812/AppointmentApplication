@@ -22,7 +22,6 @@ export class BookAppointmentComponent implements OnInit {
   hasConflictingAppointment = false;
   hasWrongWorkingHours = false
   appointmentCreated = false;
-  hasCorrectWorkingHours = true;
 
   constructor(
     private bookAppointmentService: BookAppointmentService,
@@ -36,9 +35,12 @@ export class BookAppointmentComponent implements OnInit {
     const startTime = (new Date(this.appointmentStartTime)).getTime();
 
     this.doctorService.getWorkingHours(this.selectedDoctor.id).subscribe((result) => {
+      console.log(result.data);
       const workingHours: WorkingHour[] = result.data;
-      this.hasCorrectWorkingHours = WorkingHoursUtil.validateWorkingHours(workingHours, this.appointmentStartTime);
-      this.bookAppointment(startTime);
+      this.hasWrongWorkingHours = WorkingHoursUtil.validateWorkingHours(workingHours, this.appointmentStartTime);
+      if (this.hasWrongWorkingHours) {
+        this.bookAppointment(startTime);
+      }
     });
   }
 
