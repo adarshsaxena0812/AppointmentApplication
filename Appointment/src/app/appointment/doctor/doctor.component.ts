@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { DoctorService } from "./doctor.service";
 import { WorkingHour } from "../models/workingHour";
 import { Doctor } from "../models/doctor";
@@ -8,13 +8,12 @@ import { Doctor } from "../models/doctor";
   templateUrl: './doctor.component.html',
   styleUrl: './doctor.component.css'
 })
-export class DoctorComponent {
+export class DoctorComponent implements OnInit {
 
   doctors: Doctor[] = [
     {id: 0, name: ""},
-    {id: 1, name: "Stranger"},
-    {id: 2, name: "Who"}
   ];
+
   workingHours: WorkingHour[];
   selectedDoctorId: number;
   
@@ -23,8 +22,16 @@ export class DoctorComponent {
 
   constructor(private doctorService: DoctorService) {}
 
+  ngOnInit() {
+    this.doctorService.getDoctorList().subscribe((result) => {
+      this.doctors = [...this.doctors, ...result.data];
+    });
+  }
+
   loadWorkingHours() {
-    this.workingHours = this.doctorService.getWorkingHours(this.selectedDoctorId);
+    this.workingHours = this.doctorService.getWorkingHours(this.selectedDoctorId).subscribe((result) => {
+      this.workingHours = result.data;
+    });
     this.emitDoctorEvent();
   }
 
