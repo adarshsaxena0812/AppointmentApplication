@@ -33,11 +33,10 @@ export class AvailableAppointmentComponent {
     }
 
     if(this.desiredAppointmentDateTime && this.appointmentDuration) {
-      this.bookAppointmentService.fetchAppointment(this.selectedDoctor.id).subscribe(appointments => {
-        let firstAvailableAppointmentTime = this.availableAppointmentService.getFirstAvailableAppointment(appointments, this.desiredAppointmentDateTime, this.appointmentDuration);
-        const availableDate = new Date(firstAvailableAppointmentTime);
+      this.availableAppointmentService.getFirstAvailableAppointment(this.selectedDoctor.id, this.desiredAppointmentDateTime, this.appointmentDuration).subscribe((result) => {
+        const availableDate = new Date(result.data);
         this.firstAvailableAppointment = `${availableDate.toLocaleDateString()} ${availableDate.toLocaleTimeString()}`;
-        this.errorMessage = null;
+        this.errorMessage = null;  
       });
     }
   }

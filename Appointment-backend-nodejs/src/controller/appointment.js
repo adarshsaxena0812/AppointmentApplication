@@ -45,4 +45,22 @@ router.get('/getAppointment/:doctorId', async (req, res) => {
     }
 });
 
+router.post('/getFirstAvailableTime', async (req, res) => {
+    try {
+        const body = req.body;
+        const appointments = await appointmentService.getAppointments(body.doctorId);
+        const firstAvailableTime = appointmentService.getFirstAvailableDateTime(appointments, body.desiredAppointmentTime, body.endDateAppointment, body.durationOfAppointment);
+        return res.status(200).json({
+            success: 1,
+            data: firstAvailableTime
+        });
+    } catch(ex) {
+        return res.status(500).json({
+            success: 0,
+            data: `Unable to calculate first available time for doctor ${req.body.doctorId}`
+        });
+    }
+
+});
+
 module.exports = router;

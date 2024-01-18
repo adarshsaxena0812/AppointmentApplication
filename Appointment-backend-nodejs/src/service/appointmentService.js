@@ -43,4 +43,42 @@ checkConflictingAppointment = (appointments, appointmnetStartTime) => {
     return conflictingAppointments.length > 0;
 }
 
-module.exports = { getAppointments, checkConflictingAppointment, createAppointment }
+getFirstAvailableDateTime = (appointments, desiredAppointmentDateTime, endDateAppointment, appointmentDuration) => {
+    let appointmentOnGivenDate = filterAppointmentsFromDesiredDate(appointments, desiredAppointmentDateTime, endDateAppointment);
+    if(appointmentOnGivenDate.length > 0) {
+        let sortedAppointments = sortAppointmentByEndDate(appointmentOnGivenDate);
+
+        let isAppointmentFound = false;
+        let appointmentStartTime;
+        let appointmentEndTime;
+        for(let index = 0; (index < (sortedAppointments.length - 1) && !isAppointmentFound); index++) {
+            appointmentStartTime = sortedAppointments[index].endTime;
+            appointmentEndTime = appointmentStartTime + appointmentDuration;
+            const nextAppointmentStartTime = sortedAppointments[index+1]?.startTime;
+            if(appointmentEndTime <= nextAppointmentStartTime) {
+                isAppointmentFound = true;
+                break;
+            }
+        }
+        if(isAppointmentFound) {
+            return appointmentStartTime;
+        } else {
+            return sortedAppointments[sortedAppointments.length - 1].endTime;
+        }
+    }
+    return desiredAppointmentDateTime;
+}
+
+filterAppointmentsFromDesiredDate = (appointments, desiredAppointmentDateTime, endDate) => {
+    return appointments.filter(appointment => {
+        return appointment.startTime > desiredAppointmentDateTime && appointment.endTime < endDate;
+    });
+}
+
+sortAppointmentByEndDate = (appointments) => {
+    return appointments.sort((a, b) => {
+        return a.endTime - b.endTime
+    })
+}
+
+module.exports = { getAppointments, checkConflictingAppointment, createAppointment, getFirstAvailableDateTime }

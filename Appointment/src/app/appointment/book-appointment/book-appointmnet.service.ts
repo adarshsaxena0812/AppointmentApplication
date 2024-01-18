@@ -9,7 +9,6 @@ import { environment } from "../../../environments/environment"
 export class BookAppointmentService {
 
     allAppointmnet: any;
-    // endPointUrl: string = "https://bartiappointment-default-rtdb.firebaseio.com/appointment.json";
     endPointUrl: string = environment.apiUrl;
 
     constructor(private http: HttpClient) {}
