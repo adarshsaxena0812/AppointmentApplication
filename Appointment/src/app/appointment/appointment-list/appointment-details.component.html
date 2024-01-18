@@ -20,8 +20,8 @@
             <th>Duration (mins)</th>
         </tr>
         <tr *ngFor="let appointment of filteredAppointments"    >
-            <td>{{appointment.appointmentStartTime | date}}</td>
-            <td>{{appointment.appointmentStartTime | displayDuration: appointment.appointmentEndTime}}</td>
+            <td>{{appointment.startTime | date: "MM-dd-yyyy hh:mm"}}</td>
+            <td>{{appointment.startTime | displayDuration: appointment.endTime}}</td>
         </tr>
     </table>
 </div>

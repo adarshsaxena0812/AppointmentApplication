@@ -25,16 +25,9 @@ export class BookAppointmentService {
         });
     }
 
-    fetchAppointment() {
-        return this.http.get<{[key: string]: Appointment}>(this.endPointUrl)
-            .pipe(map((res) => {
-                const appointments: Appointment[] = [];
-                for(const key in res) {
-                    if(res.hasOwnProperty(key)) {
-                        appointments.push({...res[key], id: key});
-                    } 
-                }
-                return appointments 
-            }));
+    fetchAppointment(doctorId: number): any {
+        return this.http.get(`${this.endPointUrl}/appointment/getAppointment/${doctorId}`, {
+            headers: new HttpHeaders().set('Content-Type', "application/json")
+        });
     }
 }

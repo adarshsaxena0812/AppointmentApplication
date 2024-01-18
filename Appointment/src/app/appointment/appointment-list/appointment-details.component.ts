@@ -16,7 +16,7 @@ export class AppointmentDetailsComponent {
 
   toDate: string;
   fromDate: string;
-  filteredAppointments: Appointment[];
+  filteredAppointments;
 
   constructor(
     private bookAppointmentService: BookAppointmentService,
@@ -24,9 +24,8 @@ export class AppointmentDetailsComponent {
   ) {}
 
   getAppointment() {
-    this.bookAppointmentService.fetchAppointment().subscribe(data => {
-        this.filteredAppointments = this.appointmentService.filterAppointment(this.selectedDoctor.id, data, this.fromDate, this.toDate);
+    this.bookAppointmentService.fetchAppointment(this.selectedDoctor.id).subscribe(result => {
+        this.filteredAppointments = this.appointmentService.filterAppointment(this.selectedDoctor.id, result.data, this.fromDate, this.toDate);
     });
   }
-
 }

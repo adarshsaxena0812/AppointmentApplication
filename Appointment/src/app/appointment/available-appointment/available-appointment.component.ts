@@ -33,7 +33,7 @@ export class AvailableAppointmentComponent {
     }
 
     if(this.desiredAppointmentDateTime && this.appointmentDuration) {
-      this.bookAppointmentService.fetchAppointment().subscribe(appointments => {
+      this.bookAppointmentService.fetchAppointment(this.selectedDoctor.id).subscribe(appointments => {
         let firstAvailableAppointmentTime = this.availableAppointmentService.getFirstAvailableAppointment(appointments, this.desiredAppointmentDateTime, this.appointmentDuration);
         const availableDate = new Date(firstAvailableAppointmentTime);
         this.firstAvailableAppointment = `${availableDate.toLocaleDateString()} ${availableDate.toLocaleTimeString()}`;
